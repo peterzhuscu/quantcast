@@ -2,10 +2,12 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import java.util.*;
 
-public class CookieFinderTest {
+public class CookieFinderTest 
+{
 
     @Test
-    public void testMostActiveCookiesSingleWinner() {
+    public void testMostActiveCookiesSingleWinner() 
+    {
         List<String> cookies = Arrays.asList("A", "B", "A", "C", "A", "B");
         List<String> result = CookieFinder.mostActiveCookies(cookies);
         assertEquals(1, result.size());
@@ -13,7 +15,8 @@ public class CookieFinderTest {
     }
 
     @Test
-    public void testMostActiveCookiesTie() {
+    public void testMostActiveCookiesTie() 
+    {
         List<String> cookies = Arrays.asList("A", "B", "A", "B");
         List<String> result = CookieFinder.mostActiveCookies(cookies);
         assertTrue(result.contains("A"));
@@ -22,9 +25,11 @@ public class CookieFinderTest {
     }
 
     @Test
-    public void testMostActiveCookiesEmpty() {
+    public void testMostActiveCookiesEmpty() 
+    {
         List<String> cookies = new ArrayList<>();
         List<String> result = CookieFinder.mostActiveCookies(cookies);
         assertTrue(result.isEmpty());
     }
+    
 }
