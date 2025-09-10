@@ -48,7 +48,7 @@ public class CookieFinder
             System.exit(1);
         }
         
-    }
+    }//main
 
     private static List<String> loadCookies(String fileName, String date) throws IOException 
     {
@@ -72,7 +72,8 @@ public class CookieFinder
         }
         
         return cookies;
-    }
+        
+    }//loadCookikes
 
     public static List<String> mostActiveCookies(List<String> cookies) 
     {
@@ -94,6 +95,6 @@ public class CookieFinder
         
         return result;
         
-    }
+    }//mostActiveCookies
     
 }
