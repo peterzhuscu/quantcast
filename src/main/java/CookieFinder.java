@@ -14,7 +14,8 @@ public class CookieFinder
         // Simple argument parsing
         for (int i = 0; i < args.length; i++) 
         {
-            switch (args[i]) {
+            switch (args[i]) 
+            {
                 case "-f":
                     if (i + 1 < args.length) fileName = args[++i];
                     break;
@@ -22,6 +23,7 @@ public class CookieFinder
                     if (i + 1 < args.length) date = args[++i];
                     break;
             }
+            
         }
 
         if (fileName == null || date == null) 
@@ -30,48 +32,68 @@ public class CookieFinder
             System.exit(1);
         }
 
-        try {
+        try 
+        {
             List<String> cookies = loadCookies(fileName, date);
             List<String> mostActive = mostActiveCookies(cookies);
-            for (String cookie : mostActive) {
+            for (String cookie : mostActive) 
+            {
                 System.out.println(cookie);
             }
-        } catch (IOException e) {
+            
+        } 
+        catch (IOException e) 
+        {
             System.err.println("Error reading file: " + e.getMessage());
             System.exit(1);
         }
+        
     }
 
-    private static List<String> loadCookies(String fileName, String date) throws IOException {
+    private static List<String> loadCookies(String fileName, String date) throws IOException 
+    {
         List<String> cookies = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) 
+        {
             String line = br.readLine(); // skip header
-            while ((line = br.readLine()) != null) {
+            while ((line = br.readLine()) != null) 
+            {
                 String[] parts = line.split(",");
                 if (parts.length != 2) continue;
                 String cookie = parts[0];
                 String timestamp = parts[1];
-                if (timestamp.startsWith(date)) {
+                if (timestamp.startsWith(date)) 
+                {
                     cookies.add(cookie);
                 }
+                
             }
+            
         }
+        
         return cookies;
     }
 
-    public static List<String> mostActiveCookies(List<String> cookies) {
+    public static List<String> mostActiveCookies(List<String> cookies) 
+    {
         if (cookies.isEmpty()) return Collections.emptyList();
         Map<String, Integer> countMap = new HashMap<>();
         int maxCount = 0;
-        for (String cookie : cookies) {
+        for (String cookie : cookies) 
+        {
             int newCount = countMap.getOrDefault(cookie, 0) + 1;
             countMap.put(cookie, newCount);
             maxCount = Math.max(maxCount, newCount);
         }
+        
         List<String> result = new ArrayList<>();
-        for (Map.Entry<String, Integer> entry : countMap.entrySet()) {
+        for (Map.Entry<String, Integer> entry : countMap.entrySet()) 
+        {
             if (entry.getValue() == maxCount) result.add(entry.getKey());
         }
+        
         return result;
+        
     }
+    
 }
